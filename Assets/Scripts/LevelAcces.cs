@@ -8,9 +8,9 @@ public class LevelAcces : MonoBehaviour
     private bool[] isLevelAcces = new bool[5];
     public bool isMainAcces=true;
     public int maxLevel = 4;
-    public int currentLevel=0;
+    public int currentLevel=1;
     private string[] allLevels=new string[5];
-    public void Start()
+    public void Awake()
     {
         allLevels[0] = "MainGame A";
         allLevels[1] = "MainGame B";

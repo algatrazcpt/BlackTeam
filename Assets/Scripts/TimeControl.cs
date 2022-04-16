@@ -8,6 +8,7 @@ public class TimeControl : MonoBehaviour
     LevelAcces level;
     public GameObject gameStop;
     public static TimeControl Instance;
+    public bool isSubState=false;
     void Start()
     {
         level = LevelAcces.Instance;
@@ -33,12 +34,14 @@ public class TimeControl : MonoBehaviour
     public void StartLevel()
     {
         FrozenTime(true);
-        SceneManager.LoadScene(LevelAcces.Instance.GetCurrentLevel(), LoadSceneMode.Additive);
+        SceneManager.LoadScene("CutScene", LoadSceneMode.Additive);
+        //SceneManager.LoadScene(LevelAcces.Instance.GetCurrentLevel(), LoadSceneMode.Additive);
     }
     public void ReturnGame()
     {
         LevelAcces.Instance.currentLevel = 0;
-        SceneManager.UnloadSceneAsync(LevelAcces.Instance.GetCurrentLevel());
+        SceneManager.LoadSceneAsync("CutScene", LoadSceneMode.Additive);
+        //SceneManager.UnloadSceneAsync(LevelAcces.Instance.GetCurrentLevel());
         FrozenTime(false);
 
     }

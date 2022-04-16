@@ -12,9 +12,13 @@ public class PlayerActionControl : MonoBehaviour
     public InputActionReference _actionReference;
     private float scrollingValue;
     private bool isPerformed;
+    private bool isMainMachineRegion=false;
+    public bool SubLevel = false;
     void Start()
     {
         _inputs = GetComponent<StarterAssetsInputs>();
+        _inventorSystem = LevelAcces.Instance;
+        gameUiItem = GameObject.Find("GameGui").GetComponent<ItemImageControl>();
         _actionReference.action.performed += _x => scrollingValue = _x.action.ReadValue<float>();
     }
     public void TestItem(InputAction.CallbackContext context)
@@ -22,6 +26,14 @@ public class PlayerActionControl : MonoBehaviour
         Debug.Log("Only me");
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        isMainMachineRegion = true;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        isMainMachineRegion = false;
+    }
     void FixedUpdate()
     {
         LayerMask mask = LayerMask.GetMask("PickItems");
@@ -42,49 +54,70 @@ public class PlayerActionControl : MonoBehaviour
                 // 
             }
         }
-        
 
-        //
-        if(_inputs.pick && _inventorSystem.AccesControl() && _inventorSystem.currentLevel!=0)
+        if (SubLevel == false)
         {
-            _inputs.pick = false;
-            TimeControl.Instance.StartLevel();
+            
+            //
+            if (_inputs.pick && _inventorSystem.AccesControl() && _inventorSystem.currentLevel != 0 && isMainMachineRegion)
+            {
+                Debug.Log("CurrenlevelChange");
+                _inputs.pick = false;
+                TimeControl.Instance.isSubState = true;
+                TimeControl.Instance.StartLevel();
+            }
+            else if (_inputs.pick && _inventorSystem.AccesControl() && _inventorSystem.isMainAcces && isMainMachineRegion)
+            {
+                _inputs.pick = false;
+                TimeControl.Instance.isSubState = false;
+                TimeControl.Instance.ReturnGame();
+            }
         }
-        if (_inputs.pick && _inventorSystem.AccesControl() && _inventorSystem.isMainAcces)
+        else
         {
-            _inputs.pick = false;
-            TimeControl.Instance.ReturnGame();
+           /// Debug.Log("Sublevel Trrue");
+            if (_inputs.pick && isMainMachineRegion)
+            {
+                _inputs.pick = false;
+                LevelAcces.Instance.currentLevel = 0;
+                TimeControl.Instance.isSubState = true;
+                TimeControl.Instance.ReturnGame();
+                Debug.Log("Wroking");
+            }
         }
-        //
         if (scrollingValue > 0)
         {
             if (_inventorSystem.maxLevel <= _inventorSystem.currentLevel)
             {
-                _inventorSystem.currentLevel = 0;
+                _inventorSystem.currentLevel = 1;
             }
             else
             {
                 _inventorSystem.currentLevel += 1;
-                
+
             }
         }
-        
+
         else if (scrollingValue < 0)
         {
-            if (0 > _inventorSystem.currentLevel)
+            if (1 > _inventorSystem.currentLevel)
             {
                 _inventorSystem.currentLevel = _inventorSystem.maxLevel;
             }
             else
             {
                 _inventorSystem.currentLevel -= 1;
-                
+
             }
         }
         gameUiItem.ItemMaterialChange(_inventorSystem.currentLevel, _inventorSystem.AccesControl());
+
+
+
         if (_inputs.pick)
         {
             _inputs.pick= false;
         }
+
     }
 }
