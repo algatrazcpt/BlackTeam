@@ -10,7 +10,6 @@ public class PlayerActionControl : MonoBehaviour
     public ItemImageControl gameUiItem;
     public LevelAcces _inventorSystem;
     public InputActionReference _actionReference;
-    public GameObject _gameObject;
     private float scrollingValue;
     void Start()
     {
@@ -25,32 +24,33 @@ public class PlayerActionControl : MonoBehaviour
         {
             Debug.DrawRay(new Vector3(transform.position.x, 1.5f, transform.position.z), transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             Debug.Log("Did Hit");
-            gameUiItem.ItemMaterialChange(1);
+           // gameUiItem.ItemMaterialChange(1);
             Debug.Log(hit.collider.GetComponent<ChipSettings>().ChipName);
             if (_inputs.pick)
             {
+                int value= hit.collider.GetComponent<ChipSettings>().ChipId;
                 _inputs.pick = false;
                 Debug.Log("Pick Ýtem");
                 Destroy(hit.collider.gameObject);
-                _inventorSystem.Acceslevel(hit.collider.GetComponent<ChipSettings>().ChipId);
+                _inventorSystem.currentLevel = value;
+                _inventorSystem.LevelControl(value);
                 // 
             }
         }
         else
         {
-            gameUiItem.ItemMaterialChange(2);
+           // gameUiItem.ItemMaterialChange(2);
         }
         //
-        if (_inputs.jump && _inventorSystem.isAccesLevel2)
+        if(_inputs.pick && _inventorSystem.AccesControl() && _inventorSystem.currentLevel!=0)
         {
-            SceneManager.LoadScene("Main", LoadSceneMode.Additive);
-            _inputs.jump = false;
-            _gameObject.SetActive(false);
+            _inputs.pick = false;
+            TimeControl.Instance.StartLevel();
         }
-        else if (_inputs.jump && _inventorSystem.isAccesLevel1)
+        if (_inputs.pick && _inventorSystem.AccesControl() && _inventorSystem.isMainAcces)
         {
-            SceneManager.LoadScene("Level", LoadSceneMode.Additive);
-            _inputs.jump = false;
+            _inputs.pick = false;
+            TimeControl.Instance.ReturnGame();
         }
         //
         if (scrollingValue > 0)
@@ -63,8 +63,8 @@ public class PlayerActionControl : MonoBehaviour
             {
                 _inventorSystem.currentLevel += 1;
             }
-            Debug.Log("ScrolUp");
         }
+        
         else if (scrollingValue < 0)
         {
             if (0 > _inventorSystem.currentLevel)
