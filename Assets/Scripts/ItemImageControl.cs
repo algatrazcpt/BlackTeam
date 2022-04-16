@@ -10,8 +10,16 @@ public class ItemImageControl : MonoBehaviour
     {
         image.sprite = itemImages[0];
     }
-    public void ItemMaterialChange(int value)
+    public void ItemMaterialChange(int value,bool isOpen)
     {
-        image.sprite = itemImages[value];
+        if (isOpen)
+        {
+            image.sprite = itemImages[value+1];
+        }
+        else
+        {
+            image.sprite = itemImages[0];
+        }
+        
     }
 }

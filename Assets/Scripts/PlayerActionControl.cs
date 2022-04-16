@@ -11,11 +11,17 @@ public class PlayerActionControl : MonoBehaviour
     public LevelAcces _inventorSystem;
     public InputActionReference _actionReference;
     private float scrollingValue;
+    private bool isPerformed;
     void Start()
     {
         _inputs = GetComponent<StarterAssetsInputs>();
         _actionReference.action.performed += _x => scrollingValue = _x.action.ReadValue<float>();
     }
+    public void TestItem(InputAction.CallbackContext context)
+    {
+        Debug.Log("Only me");
+    }
+
     void FixedUpdate()
     {
         LayerMask mask = LayerMask.GetMask("PickItems");
@@ -24,7 +30,6 @@ public class PlayerActionControl : MonoBehaviour
         {
             Debug.DrawRay(new Vector3(transform.position.x, 1.5f, transform.position.z), transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             Debug.Log("Did Hit");
-           // gameUiItem.ItemMaterialChange(1);
             Debug.Log(hit.collider.GetComponent<ChipSettings>().ChipName);
             if (_inputs.pick)
             {
@@ -37,10 +42,8 @@ public class PlayerActionControl : MonoBehaviour
                 // 
             }
         }
-        else
-        {
-           // gameUiItem.ItemMaterialChange(2);
-        }
+        
+
         //
         if(_inputs.pick && _inventorSystem.AccesControl() && _inventorSystem.currentLevel!=0)
         {
@@ -62,6 +65,7 @@ public class PlayerActionControl : MonoBehaviour
             else
             {
                 _inventorSystem.currentLevel += 1;
+                
             }
         }
         
@@ -74,7 +78,13 @@ public class PlayerActionControl : MonoBehaviour
             else
             {
                 _inventorSystem.currentLevel -= 1;
+                
             }
+        }
+        gameUiItem.ItemMaterialChange(_inventorSystem.currentLevel, _inventorSystem.AccesControl());
+        if (_inputs.pick)
+        {
+            _inputs.pick= false;
         }
     }
 }
