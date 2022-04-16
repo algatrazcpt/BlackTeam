@@ -10,13 +10,15 @@ public class GameSettings : MonoBehaviour
     public string settingsId = "SettingsMenu";
     private float volumeValue=0.5f;
     public float VolumeValue { get => volumeValue; set => volumeValue = value; }
-    void Awake()
+    private void Awake()
     {
-        if(Instance != null)
+        if (Instance != null)
         {
-            Destroy(Instance);
+            Destroy(gameObject);
+            return;
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+       
     }
 }

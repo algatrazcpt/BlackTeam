@@ -11,9 +11,10 @@ public class SettingsMenuControl : MonoBehaviour
     void Start()
     {
         Init();
-        gameSettings = GameSettings.Instance;
+       
         volumeSlider.onValueChanged.AddListener(VolumeChange);
-        gameSettings.VolumeValue= volumeSlider.value;
+        volumeSlider.value = gameSettings.VolumeValue;
+        gameSettings.VolumeValue = volumeSlider.value;
     }
 
     public void VolumeChange(float value)
@@ -27,5 +28,6 @@ public class SettingsMenuControl : MonoBehaviour
     public void Init()
     {
         menuId = GameSettings.Instance.menuId;
+        gameSettings = GameSettings.Instance;
     }
 }

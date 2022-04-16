@@ -203,8 +203,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameUiItem: {fileID: 0}
   _inventorSystem: {fileID: 0}
-  _actionReference: {fileID: 0}
+  _actionReference: {fileID: 6141376863017578778, guid: 4419d82f33d36e848b3ed5af4c8da37e, type: 3}
   SubLevel: 0
+  levelId: 1
 --- !u!4 &531325738 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8338988566280778637, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}

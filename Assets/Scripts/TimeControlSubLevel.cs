@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 public class TimeControlSubLevel  : MonoBehaviour
 {
+    MissionControl taskSystem;
     StarterAssetsInputs _inputs;
     public ItemImageControl gameUiItem;
     public LevelAcces _inventorSystem;
@@ -17,10 +18,25 @@ public class TimeControlSubLevel  : MonoBehaviour
     public int levelId=1;
     void Start()
     {
+
+        taskSystem = MissionControl.Instance;
+        levelId = LevelAcces.Instance.currentLevel;
         _inputs = GetComponent<StarterAssetsInputs>();
         _inventorSystem = LevelAcces.Instance;
         gameUiItem = GameObject.Find("GameGui").GetComponent<ItemImageControl>();
         _actionReference.action.performed += _x => scrollingValue = _x.action.ReadValue<float>();
+        if (levelId == 1 && taskSystem.TaskState(3))
+        {
+            Debug.Log("Task2");
+            taskSystem.GetTask(3);
+            taskSystem.StartTask();
+        }
+        else if (levelId == 2 && taskSystem.TaskState(5))
+        {
+            Debug.Log("Task3");
+            taskSystem.GetTask(5);
+            taskSystem.StartTask();
+        }
     }
     public void TestItem(InputAction.CallbackContext context)
     {

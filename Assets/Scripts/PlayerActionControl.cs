@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 public class PlayerActionControl : MonoBehaviour
 {
+    MissionControl taskSystem;
     StarterAssetsInputs _inputs;
     public ItemImageControl gameUiItem;
     public LevelAcces _inventorSystem;
@@ -16,10 +17,15 @@ public class PlayerActionControl : MonoBehaviour
     public bool SubLevel = false;
     void Start()
     {
+        taskSystem = MissionControl.Instance;
         _inputs = GetComponent<StarterAssetsInputs>();
         _inventorSystem = LevelAcces.Instance;
         gameUiItem = GameObject.Find("GameGui").GetComponent<ItemImageControl>();
         _actionReference.action.performed += _x => scrollingValue = _x.action.ReadValue<float>();
+        //Task
+        taskSystem.GetTask(0);
+        taskSystem.StartTask();
+        // 
     }
     public void TestItem(InputAction.CallbackContext context)
     {
@@ -51,6 +57,13 @@ public class PlayerActionControl : MonoBehaviour
                 Destroy(hit.collider.gameObject);
                 _inventorSystem.currentLevel = value;
                 _inventorSystem.LevelControl(value);
+                //
+                //Task
+                if (taskSystem.TaskState(1))
+                {
+                    taskSystem.GetTask(1);
+                    taskSystem.StartTask();
+                }
                 // 
             }
         }
@@ -61,10 +74,12 @@ public class PlayerActionControl : MonoBehaviour
             //
             if (_inputs.pick && _inventorSystem.AccesControl() && _inventorSystem.currentLevel != 0 && isMainMachineRegion)
             {
+                
                 Debug.Log("CurrenlevelChange");
                 _inputs.pick = false;
                 TimeControl.Instance.isSubState = true;
                 TimeControl.Instance.StartLevel();
+                
             }
             else if (_inputs.pick && _inventorSystem.AccesControl() && _inventorSystem.isMainAcces && isMainMachineRegion)
             {

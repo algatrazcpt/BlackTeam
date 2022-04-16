@@ -13,6 +13,7 @@ public class MainMenuControl : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene(levelId);
+        Cursor.lockState = CursorLockMode.Locked;
     }
     public void StartSettings()
     {

@@ -40,7 +40,7 @@ public class TimeControl : MonoBehaviour
     public void ReturnGame()
     {
         LevelAcces.Instance.currentLevel = 0;
-        SceneManager.LoadSceneAsync("CutScene", LoadSceneMode.Additive);
+        SceneManager.LoadScene("CutScene", LoadSceneMode.Additive);
         //SceneManager.UnloadSceneAsync(LevelAcces.Instance.GetCurrentLevel());
         FrozenTime(false);
 

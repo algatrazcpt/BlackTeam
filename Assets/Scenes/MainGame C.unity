@@ -792,7 +792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameUiItem: {fileID: 0}
   _inventorSystem: {fileID: 0}
-  _actionReference: {fileID: 0}
+  _actionReference: {fileID: 6141376863017578778, guid: 4419d82f33d36e848b3ed5af4c8da37e, type: 3}
   SubLevel: 0
   levelId: 2
 --- !u!4 &1735106094 stripped
