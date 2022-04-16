@@ -54,10 +54,10 @@
                     "name": "Scroll",
                     "type": "PassThrough",
                     "id": "eb23bc74-2b2e-49cc-ba4b-3374e3f2a832",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "Analog",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Test",
