@@ -24,14 +24,20 @@ EditorBuildSettings:
     path: Assets/Scenes/MainGame B.unity
     guid: f88fbeefbe5ca2f45991f18226b17d11
   - enabled: 1
+    path: Assets/Scenes/GameFinish.unity
+    guid: b5a84ee49c66a8747a49465d7e3537c7
+  - enabled: 1
     path: Assets/Scenes/MainGame C.unity
     guid: 855d80dfaaa904d4ab26e6d946b1596f
   - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 516ca63d50d55eb49aa8a26f5f8d0c6e
+  - enabled: 1
     path: Assets/Scenes/CutSceneOpening.unity
     guid: c00baf33f4a3c6c41bd9441a9b85d00e
-  - enabled: 1
-    path: Assets/Scenes/GameOver.unity
-    guid: ce35264111f1e574a873a5dc6148e1cc
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/TeleportCutScene.unity
     guid: 1227a186215356040bf93ee8464bf017

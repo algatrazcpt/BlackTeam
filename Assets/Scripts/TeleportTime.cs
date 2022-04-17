@@ -48,7 +48,7 @@ public class TeleportTime : MonoBehaviour
     void GameOverScren()
     {
         Debug.Log("Game Over");
-        SceneManager.LoadScene("GameOver");
+        SceneManager.LoadScene("GameFinish");
     }
 
     public void StartTeleportTimer()

@@ -8,7 +8,7 @@ public class ComputerConmtrol : MonoBehaviour
     public void GameFinish()
     {
         
-        SceneManager.LoadScene("GameFinish");
+        SceneManager.LoadScene("GameYouWin");
     }
     public void OnTriggerEnter(Collider other)
     {

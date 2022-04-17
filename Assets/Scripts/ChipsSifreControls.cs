@@ -25,7 +25,7 @@ public class ChipsSifreControls : MonoBehaviour
     }
     public void AddChips()
     {
-        if (currentChips == maxChips)
+        if (currentChips >= maxChips)
         {
             allChipsDone = true;
             chipsMetin = "Makinayý Kurtar";
