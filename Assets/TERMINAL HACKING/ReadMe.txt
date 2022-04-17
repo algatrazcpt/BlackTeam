@@ -1,0 +1,7 @@
+Terminal Hacking Kit v.1.0
+
+Visit a terminal and press E to interact. You have four guesses to get the password, with each guess displaying the number of correct letters and their respective placement in the word as displayed in the console (the right pane of the hacking window).
+To change the language of the system from English, you'll need a 7-letter word list in the language you wish to use, and simply replace the WordList from the supplied 7 Letter.txt to one of your own. The only other replaceable variables are the AudioClips, but the hoverSound must remain in the 0.2 second range to keep up with the MouseOver and Setup() parameters.
+Everything can be seen in the HACKING prefab.
+To use any FPS Controller, simply set the Player tag to Player, but you may need to disable the LookAtMissile variable in mt_MissileLauncher attached to the Missile Silo Sample prefab, since it explicitly uses the simple Unity FPSController MouseLook.
+Note: everything in the Example folder is either simple creations in 3ds max or primitives made within Unity. These are for example use but can be used as you wish. The Player controller is based upon the Unity FirstPerson controller with modifications so that it can be used with any version of Unity 5.4+.
