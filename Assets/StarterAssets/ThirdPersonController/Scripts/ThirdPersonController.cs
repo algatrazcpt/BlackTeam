@@ -8,12 +8,23 @@ using UnityEngine.InputSystem;
 
 namespace StarterAssets
 {
+
+
+
 	[RequireComponent(typeof(CharacterController))]
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 	[RequireComponent(typeof(PlayerInput))]
 #endif
 	public class ThirdPersonController : MonoBehaviour
 	{
+		//WalkSound
+		public AudioSource walk1Sound;
+		public AudioSource walk2Sound;
+		public AudioSource jumpSound;
+		//
+
+
+
 		[Header("Player")]
 		[Tooltip("Move speed of the character in m/s")]
 		public float MoveSpeed = 2.0f;
@@ -197,6 +208,7 @@ namespace StarterAssets
 			{
 				_speed = targetSpeed;
 			}
+
 			_animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
 
 			// normalise input direction
@@ -206,6 +218,12 @@ namespace StarterAssets
 			// if there is a move input rotate player when the player is moving
 			if (_input.move != Vector2.zero)
 			{
+
+				//walk Sounds
+				WalkSounds();
+				//
+
+
 				_targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
 				float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
 
@@ -257,6 +275,11 @@ namespace StarterAssets
 					if (_hasAnimator)
 					{
 						_animator.SetBool(_animIDJump, true);
+						//Sounds
+						JumpSounds();
+
+
+						//
 					}
 				}
 
@@ -314,5 +337,41 @@ namespace StarterAssets
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
+
+		bool current = true;
+		public void WalkSounds()
+		{
+			
+			if (walk1Sound.isPlaying==false&&current)
+            {
+				walk1Sound.Play();
+				current = false;
+            }
+			else if (walk2Sound.isPlaying==false)
+            {
+				walk2Sound.Play();
+				current = true;
+			}
+		}
+		public void WalksSettings(bool value)
+        {
+			if(value)
+            {
+				walk1Sound.pitch = 2.45f;
+				walk2Sound.pitch = 2.45f;
+			}
+			else
+            {
+				walk1Sound.pitch = 1.76f;
+				walk2Sound.pitch = 1.76f;
+			}
+        }
+		public void JumpSounds()
+        {
+			if(jumpSound.isPlaying==false)
+            {
+				jumpSound.Play();
+            }
+        }
 	}
 }
