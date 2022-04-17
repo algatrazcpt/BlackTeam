@@ -7,6 +7,11 @@ TagManager:
   - CinemachineTarget
   - Emissive_Outer
   - Emissive_Inner
+  - Row
+  - Terminal
+  - Structure
+  - MachineRegion
+  - Chips
   layers:
   - Default
   - TransparentFX

@@ -57,7 +57,7 @@ public class mt_Terminal : MonoBehaviour
     {
         if (Input.GetKeyDown(useKey))
         {
-            if (!inRange || Hacking.isHacking) return;
+            if (Hacking.isHacking) return;
             Hacking.ToggleHacking(true);
         }
 

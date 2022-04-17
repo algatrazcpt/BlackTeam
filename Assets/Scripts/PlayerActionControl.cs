@@ -34,21 +34,28 @@ public class PlayerActionControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        isMainMachineRegion = true;
+        if (other.CompareTag("MachineRegion"))
+        {
+            isMainMachineRegion = true;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
-        isMainMachineRegion = false;
+        if (other.CompareTag("MachineRegion"))
+        {
+            isMainMachineRegion = false;
+        }
+
     }
     void FixedUpdate()
     {
         LayerMask mask = LayerMask.GetMask("PickItems");
         RaycastHit hit;
-        if (Physics.Raycast(new Vector3(transform.position.x, 1.5f, transform.position.z), transform.TransformDirection(Vector3.forward), out hit, 2, mask))
+        //Debug.DrawRay(new Vector3(transform.position.x, 1.5f, transform.position.z), transform.TransformDirection(new Vector3(0, -0.2f, 1)),Color.red);
+        if (Physics.Raycast(new Vector3(transform.position.x, 1.5f, transform.position.z), transform.TransformDirection(new Vector3(0, -0.2f, 1)), out hit, 2, mask))
         {
             Debug.DrawRay(new Vector3(transform.position.x, 1.5f, transform.position.z), transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             Debug.Log("Did Hit");
-            Debug.Log(hit.collider.GetComponent<ChipSettings>().ChipName);
             if (_inputs.pick)
             {
                 int value= hit.collider.GetComponent<ChipSettings>().ChipId;

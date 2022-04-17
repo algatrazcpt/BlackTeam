@@ -220,7 +220,10 @@ namespace StarterAssets
 			{
 
 				//walk Sounds
-				WalkSounds();
+				if (Grounded)
+				{
+					WalkSounds();
+				}
 				//
 
 

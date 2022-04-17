@@ -11,6 +11,7 @@ public class TimeControlSubLevel  : MonoBehaviour
     public ItemImageControl gameUiItem;
     public LevelAcces _inventorSystem;
     public InputActionReference _actionReference;
+    public TeleportTime teleporTimerControl;
     private float scrollingValue;
     private bool isPerformed;
     private bool isMainMachineRegion = false;
@@ -18,7 +19,7 @@ public class TimeControlSubLevel  : MonoBehaviour
     public int levelId=1;
     void Start()
     {
-
+        teleporTimerControl=TeleportTime.Instance;
         taskSystem = MissionControl.Instance;
         levelId = LevelAcces.Instance.currentLevel;
         _inputs = GetComponent<StarterAssetsInputs>();
@@ -37,6 +38,7 @@ public class TimeControlSubLevel  : MonoBehaviour
             taskSystem.GetTask(5);
             taskSystem.StartTask();
         }
+         teleporTimerControl.StartTeleportTimer();
     }
     public void TestItem(InputAction.CallbackContext context)
     {
@@ -45,11 +47,18 @@ public class TimeControlSubLevel  : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        isMainMachineRegion = true;
+        if (other.CompareTag("MachineRegion"))
+        {
+            isMainMachineRegion = true;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
-        isMainMachineRegion = false;
+        if (other.CompareTag("MachineRegion"))
+        {
+            isMainMachineRegion = false;
+        }
+
     }
     void FixedUpdate()
     {
@@ -74,6 +83,7 @@ public class TimeControlSubLevel  : MonoBehaviour
             if (_inputs.pick && isMainMachineRegion)
             {
                 _inputs.pick = false;
+                teleporTimerControl.DeleteTimerNotBreak();
                 LevelAcces.Instance.currentLevel = levelId;
                 TimeControl.Instance.isSubState = false;
                 Destroy(gameObject);
