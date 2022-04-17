@@ -8,7 +8,7 @@ public class ChipsSifreControls : MonoBehaviour
     public Animator animator;
     public static ChipsSifreControls Instance;
     public TMP_Text sabitTaskText;
-    public static int maxChips = 20;
+    public static int maxChips = 16;
     public int currentChips = 0;
     public bool allChipsDone = false;
     public string chipsMetin = "Tüm SifreChiplerini Topla" + maxChips + "/"+0;

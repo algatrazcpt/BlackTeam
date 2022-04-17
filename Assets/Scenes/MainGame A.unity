@@ -2634,7 +2634,7 @@ MonoBehaviour:
   sabitTaskText: {fileID: 1872061890}
   currentChips: 0
   allChipsDone: 0
-  chipsMetin: "T\xFCm SifreChiplerini Topla20/0"
+  chipsMetin: "T\xFCm SifreChiplerini Topla16/0"
 --- !u!1 &1380504493 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8345070699079395523, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
@@ -5042,7 +5042,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2821972584065404400, guid: 9f37326fe653aaa4eb5ecad8e96659fa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.342413
+      value: -2.46
       objectReference: {fileID: 0}
     - target: {fileID: 2821972584065404400, guid: 9f37326fe653aaa4eb5ecad8e96659fa, type: 3}
       propertyPath: m_LocalPosition.y
