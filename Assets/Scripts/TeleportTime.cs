@@ -17,7 +17,6 @@ public class TeleportTime : MonoBehaviour
     public bool isSubLevel = false;
     void Start()
     {
-        
         if (Instance != null)
         {
             Destroy(Instance);
