@@ -470,6 +470,7 @@ MonoBehaviour:
   gameUiItem: {fileID: 0}
   _inventorSystem: {fileID: 0}
   _actionReference: {fileID: 6141376863017578778, guid: 4419d82f33d36e848b3ed5af4c8da37e, type: 3}
+  teleporTimerControl: {fileID: 0}
   SubLevel: 0
   levelId: 1
 --- !u!4 &531325738 stripped
@@ -1991,6 +1992,10 @@ PrefabInstance:
     - target: {fileID: 7690497447382159287, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787324026647105865, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7868691500460860468, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
       propertyPath: m_Materials.Array.data[0]
