@@ -21,7 +21,7 @@ public class MainMenuControl : MonoBehaviour
     }
     public void Init()
     {
-        levelId = "CutScenOpen2";
+        levelId = "CutSceneOpening";
         settingsId = GameSettings.Instance.settingsId;
     }
 }

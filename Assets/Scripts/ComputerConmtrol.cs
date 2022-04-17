@@ -10,4 +10,11 @@ public class ComputerConmtrol : MonoBehaviour
         
         SceneManager.LoadScene("GameFinish");
     }
+    public void OnTriggerEnter(Collider other)
+    {
+        if(ChipsSifreControls.Instance.allChipsDone)
+        {
+            GameFinish();
+        }
+    }
 }

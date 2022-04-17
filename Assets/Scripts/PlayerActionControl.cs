@@ -52,7 +52,7 @@ public class PlayerActionControl : MonoBehaviour
         LayerMask mask = LayerMask.GetMask("PickItems");
         RaycastHit hit;
         //Debug.DrawRay(new Vector3(transform.position.x, 1.5f, transform.position.z), transform.TransformDirection(new Vector3(0, -0.2f, 1)),Color.red);
-        if (Physics.Raycast(new Vector3(transform.position.x, 1.5f, transform.position.z), transform.TransformDirection(new Vector3(0, -0.2f, 1)), out hit, 2, mask))
+        if (Physics.Raycast(new Vector3(transform.position.x, 1.5f, transform.position.z), transform.TransformDirection(new Vector3(0, -0.4f, 1)), out hit, 2, mask))
         {
             Debug.DrawRay(new Vector3(transform.position.x, 1.5f, transform.position.z), transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             Debug.Log("Did Hit");
