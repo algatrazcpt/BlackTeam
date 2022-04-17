@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 public class TeleportTime : MonoBehaviour
 {
+    public GameObject gameDelete;
     public static TeleportTime Instance;
     public TMP_Text timerText;
     public float teleportMaxTime=60;
@@ -14,6 +15,7 @@ public class TeleportTime : MonoBehaviour
     public bool isTimeFinished=false;
     void Start()
     {
+        
         if (Instance != null)
         {
             Destroy(Instance);
@@ -30,14 +32,19 @@ public class TeleportTime : MonoBehaviour
     }
     public void DeleteTimerNotBreak()
     {
+
         teleportCurrentTime = teleportMaxTime;
         timerText.text = "" + teleportMaxTime;
         StopAllCoroutines();
     }
     public void ReturnMainTime()
     {
+
         TimeControl.Instance.isSubState = false;
-        Destroy(gameObject);
+        gameDelete = GameObject.Find("GameDelete");
+        Destroy(gameDelete);
+        teleportCurrentTime = teleportMaxTime;
+        timerText.text = "" + teleportMaxTime;
         SceneManager.LoadScene("CutScene", LoadSceneMode.Additive);
         Debug.Log("Wroking");
     }

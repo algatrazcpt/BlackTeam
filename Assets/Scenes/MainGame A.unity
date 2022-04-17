@@ -1480,6 +1480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3919eea486d48fc4ab8a47385d899e82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameDelete: {fileID: 0}
   timerText: {fileID: 1243694687}
   teleportMaxTime: 60
   teleportCurrentTime: 60
