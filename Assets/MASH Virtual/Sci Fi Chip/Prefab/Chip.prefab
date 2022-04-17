@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 4645620463839923539}
   - component: {fileID: 4645620463836499315}
   - component: {fileID: 4645620463837630387}
-  m_Layer: 0
+  - component: {fileID: 667423700}
+  - component: {fileID: 8466133352916478995}
+  m_Layer: 11
   m_Name: Chip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4645620463839564147}
-  m_LocalRotation: {x: 0.6994252, y: 0.10394432, z: -0.10394429, w: 0.6994252}
+  m_LocalRotation: {x: 0.6994254, y: 0.10394336, z: -0.10394336, w: 0.6994253}
   m_LocalPosition: {x: -0.2242333, y: 5.609771, z: 0.14391562}
   m_LocalScale: {x: 25, y: 25, z: 25}
   m_Children: []
@@ -54,6 +56,8 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -65,6 +69,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -77,3 +82,32 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &667423700
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4645620463839564147}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.023890294, y: 0.0027758717, z: 0.025580203}
+  m_Center: {x: 0.0000056503577, y: 0.00011820502, z: 0.0009288981}
+--- !u!114 &8466133352916478995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4645620463839564147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a166206ef1e10b47a25d3b4772c33c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chipName: Level1
+  chipId: 1
+  chipScene: MainGameB

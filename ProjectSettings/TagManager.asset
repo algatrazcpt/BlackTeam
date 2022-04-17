@@ -12,6 +12,8 @@ TagManager:
   - Structure
   - MachineRegion
   - Chips
+  - Door
+  - ChipSifre
   layers:
   - Default
   - TransparentFX
