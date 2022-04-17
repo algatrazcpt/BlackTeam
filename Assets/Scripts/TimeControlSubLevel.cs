@@ -15,7 +15,7 @@ public class TimeControlSubLevel  : MonoBehaviour
     private float scrollingValue;
     private bool isPerformed;
     private bool isMainMachineRegion = false;
-    public bool SubLevel = false;
+    public bool SubLevel = true;
     public int levelId=1;
     void Start()
     {
@@ -38,6 +38,7 @@ public class TimeControlSubLevel  : MonoBehaviour
             taskSystem.GetTask(5);
             taskSystem.StartTask();
         }
+         teleporTimerControl.isSubLevel = true;
          teleporTimerControl.StartTeleportTimer();
     }
     public void TestItem(InputAction.CallbackContext context)
@@ -64,25 +65,27 @@ public class TimeControlSubLevel  : MonoBehaviour
     {
         LayerMask mask = LayerMask.GetMask("PickItems");
         RaycastHit hit;
-        if (Physics.Raycast(new Vector3(transform.position.x, 1.5f, transform.position.z), transform.TransformDirection(Vector3.forward), out hit, 2, mask))
+        if (Physics.Raycast(new Vector3(transform.position.x, 1.5f, transform.position.z), transform.TransformDirection(new Vector3(0, -0.2f, 1)), out hit, 2, mask))
         {
             Debug.DrawRay(new Vector3(transform.position.x, 1.5f, transform.position.z), transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             Debug.Log("Did Hit");
-            Debug.Log(hit.collider.GetComponent<ChipSettings>().ChipName);
-            if (hit.collider.CompareTag("ChipSifre"))
+            if (_inputs.pick)
             {
-                Destroy(hit.collider.gameObject);
-                ChipsSifreControls.Instance.AddChips();
-            }
-            else
-            {
-                int value = hit.collider.GetComponent<ChipSettings>().ChipId;
-                _inputs.pick = false;
-                Debug.Log("Pick Ýtem");
-                Destroy(hit.collider.gameObject);
-                _inventorSystem.currentLevel = value;
-                _inventorSystem.LevelControl(value);
-                // 
+                if (hit.collider.CompareTag("ChipSifre"))
+                {
+                    Destroy(hit.collider.gameObject);
+                    ChipsSifreControls.Instance.AddChips();
+                }
+                else
+                {
+                    int value = hit.collider.GetComponent<ChipSettings>().ChipId;
+                    _inputs.pick = false;
+                    Debug.Log("Pick Ýtem");
+                    Destroy(hit.collider.gameObject);
+                    _inventorSystem.currentLevel = value;
+                    _inventorSystem.LevelControl(value);
+                    // 
+                }
             }
         }
             if (_inputs.pick && isMainMachineRegion)

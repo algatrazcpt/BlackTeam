@@ -9,10 +9,12 @@ public class TeleportTime : MonoBehaviour
     public GameObject gameDelete;
     public static TeleportTime Instance;
     public TMP_Text timerText;
+    public float allTime = 30;
     public float teleportMaxTime=60;
     public float teleportCurrentTime = 60;
     public float timerExecuter = 1f;
     public bool isTimeFinished=false;
+    public bool isSubLevel = false;
     void Start()
     {
         
@@ -22,9 +24,34 @@ public class TeleportTime : MonoBehaviour
             return;
         }
         Instance = this;
-
+        StartAlltimeController();
         DontDestroyOnLoad(gameObject);
     }
+    public void StartAlltimeController()
+    {
+        StartCoroutine("StartAlltime");
+    }
+    IEnumerator StartAlltime()
+    {
+
+        yield return new WaitForSeconds(timerExecuter);
+        allTime -= timerExecuter;
+        if(allTime==0)
+        {
+            GameOverScren();
+        }
+        if(isSubLevel==false)
+        {
+            timerText.text =""+ allTime;
+        }
+        StartCoroutine("StartAlltime");
+    }
+    void GameOverScren()
+    {
+        Debug.Log("Game Over");
+        SceneManager.LoadScene("GameOver");
+    }
+
     public void StartTeleportTimer()
     {
         StartCoroutine("TimerControl");
@@ -35,18 +62,18 @@ public class TeleportTime : MonoBehaviour
 
         teleportCurrentTime = teleportMaxTime;
         timerText.text = "" + teleportMaxTime;
-        StopAllCoroutines();
+        isSubLevel = false;
+        StopCoroutine("TimerControl");
     }
     public void ReturnMainTime()
     {
-
+        isSubLevel = false;
         TimeControl.Instance.isSubState = false;
         gameDelete = GameObject.Find("GameDelete");
         Destroy(gameDelete);
         teleportCurrentTime = teleportMaxTime;
         timerText.text = "" + teleportMaxTime;
         SceneManager.LoadScene("CutScene", LoadSceneMode.Additive);
-        Debug.Log("Wroking");
     }
     IEnumerator TimerControl()
     {
