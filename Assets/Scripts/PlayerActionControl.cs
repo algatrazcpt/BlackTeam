@@ -58,20 +58,28 @@ public class PlayerActionControl : MonoBehaviour
             Debug.Log("Did Hit");
             if (_inputs.pick)
             {
-                int value= hit.collider.GetComponent<ChipSettings>().ChipId;
-                _inputs.pick = false;
-                Debug.Log("Pick Ýtem");
-                Destroy(hit.collider.gameObject);
-                _inventorSystem.currentLevel = value;
-                _inventorSystem.LevelControl(value);
-                //
-                //Task
-                if (taskSystem.TaskState(1))
+                if (hit.collider.CompareTag("ChipSifre"))
                 {
-                    taskSystem.GetTask(1);
-                    taskSystem.StartTask();
+                    Destroy(hit.collider.gameObject);
+                    ChipsSifreControls.Instance.AddChips();
                 }
-                // 
+                else
+                {
+                    int value = hit.collider.GetComponent<ChipSettings>().ChipId;
+                    _inputs.pick = false;
+                    Debug.Log("Pick Ýtem");
+                    Destroy(hit.collider.gameObject);
+                    _inventorSystem.currentLevel = value;
+                    _inventorSystem.LevelControl(value);
+                    //
+                    //Task
+                    if (taskSystem.TaskState(1))
+                    {
+                        taskSystem.GetTask(1);
+                        taskSystem.StartTask();
+                    }
+                    // 
+                }
             }
         }
 

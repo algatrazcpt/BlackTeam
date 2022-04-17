@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class DoorControl : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Animator animator;
+    public int levelAcces›d=0;
+    public bool doorState = false;
+    public void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log("DoorTriger");
+        if(LevelAcces.Instance.AccesControlCustom(levelAcces›d)&&doorState==false)
+        {
+            animator.SetTrigger("DoorOpen");
+            doorState = true;
+        }
     }
 }
