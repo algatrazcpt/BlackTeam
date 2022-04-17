@@ -69,7 +69,12 @@ public class TimeControlSubLevel  : MonoBehaviour
             Debug.DrawRay(new Vector3(transform.position.x, 1.5f, transform.position.z), transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             Debug.Log("Did Hit");
             Debug.Log(hit.collider.GetComponent<ChipSettings>().ChipName);
-            if (_inputs.pick)
+            if (hit.collider.CompareTag("ChipSifre"))
+            {
+                Destroy(hit.collider.gameObject);
+                ChipsSifreControls.Instance.AddChips();
+            }
+            else
             {
                 int value = hit.collider.GetComponent<ChipSettings>().ChipId;
                 _inputs.pick = false;

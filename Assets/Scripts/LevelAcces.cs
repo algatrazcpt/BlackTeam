@@ -42,6 +42,17 @@ public class LevelAcces : MonoBehaviour
             return "ERROR";
         }
     }
+    public bool AccesControlCustom(int value)
+    {
+        if (isLevelAcces[value])
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     public bool AccesControl()
     {
         if (isLevelAcces[currentLevel])

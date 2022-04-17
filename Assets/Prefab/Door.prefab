@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2536344106594635858}
   - component: {fileID: 7364045053810066669}
-  - component: {fileID: 7364045053810066667}
   m_Layer: 0
   m_Name: Door
   m_TagString: Door
@@ -55,18 +54,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7364045053810066667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2536344106594798706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e84ada2494d177944a6e997869744039, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2536344106594798712
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,7 +162,7 @@ BoxCollider:
   m_GameObject: {fileID: 2536344106594798712}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.29879028, y: 3.0668664, z: 0.62268186}
   m_Center: {x: 0, y: -0.049999952, z: -1.65}
@@ -188,7 +175,7 @@ BoxCollider:
   m_GameObject: {fileID: 2536344106594798712}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.29879028, y: 0.32260072, z: 3.6703398}
   m_Center: {x: 0, y: 1.28462, z: 0}
@@ -201,7 +188,7 @@ BoxCollider:
   m_GameObject: {fileID: 2536344106594798712}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.29879028, y: 3.0668664, z: 0.62268186}
   m_Center: {x: 0, y: -0.049999952, z: 1.6719528}
@@ -407,6 +394,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7364045053151951259}
   - component: {fileID: 7364045053151951258}
+  - component: {fileID: 390700161}
   m_Layer: 0
   m_Name: DoorCollision
   m_TagString: Untagged
@@ -441,3 +429,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.97, y: 2.77, z: 2.49}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &390700161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7364045053151951256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e84ada2494d177944a6e997869744039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 7364045053810066669}
+  "levelAcces\u0130d": 1
+  doorState: 0
